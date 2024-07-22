@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!----======== CSS ======== -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='/css/style.css') }}"
+    />
+
+    <!----===== Iconscout CSS ===== -->
+    <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <title>A2RMS Information</title>
+  </head>
+  <body>
+    <nav>
+      <!-- <div class="top" style="text-align: end;">
+            <i class="bi bi-list sidebar-toggle" style="color:black;font-size:20px"></i>
+            </div> -->
+      <div class="logo-name">
+        <div class="logo-image">
+          <img src="assets/images/logo.png" alt="logo" />
+        </div>
+      </div>
+      <div class="menu-items">
+        <ul class="nav-links">
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-currency-dollar"></i> Income
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-credit-card"></i> Expenses
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-currency-dollar"></i> Internal Job Post
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-people-fill"></i> Human Resources
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-archive-fill"></i> Inventory
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-chat-left-text-fill"></i> Communicate
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-graph-up-arrow"></i> SM Audit
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-graph-up-arrow"></i> Reports
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+
+          <li class="list-tabview-show">
+            <a href="#">
+              <div class="d-flex justify-content-between">
+                <p class="link-name">
+                  <i class="bi bi-gear-fill"></i> System Settings
+                </p>
+                <i class="bi bi-chevron-left"></i>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="dashboard">
+      <div class="search-user-box">
+        <div class="row">
+          <div class="col-md-8">
+            <form action="" class="">
+              <input
+              
+                type="text"
+                class="main-search-boxbgvw"
+                placeholder="Search By Staff ID, Name, Role"
+              />
+
+              <button class="form-search-iconbtns">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+          <div class="col-md-3"></div>
+          <div class="col-md-1">
+            <div>
+              <img
+                src="assets/images/img2.png"
+                alt="user"
+                class="img-fluid search-user-tabvw"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <h5>
+          <b
+            >Basic
+            <span style="color: rgba(1, 168, 229, 1)">Information</span></b
+          >
+        </h5>
+        <button class="add-collect-btnsvws">
+          <i class="bi bi-plus-lg"></i> Import Staff
+        </button>
+      </div>
+
+      <div
+        class="user-details-bg mt-4"
+        style="background-color: rgba(182, 234, 255, 0.51); border-radius: 7px"
+      >
+      <div class="container">
+        <form id="staff-form">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="info-dtls-alert-boxshw">
+                Staff email is their login username, password is generated
+                automatically and sent to the staff email. Superadmin can change
+                staff password on their staff profile page.
+              </div>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Prefix" class="ams-dash-label">Pre Fix<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Prefix" class="ams-dash-inputbox" placeholder="Enter Pre Fix"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="StaffId" class="ams-dash-label">Staff ID<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="StaffId" class="ams-dash-inputbox" placeholder="Enter Staff ID"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Role" class="ams-dash-label">Role<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <select class="ams-dash-inputbox" id="Role">
+                <option value="">Select</option>
+                <option value="Admin">Admin</option>
+                <option value="JP BDM">JP BDM</option>
+                <option value="Accountant">Accountant</option>
+                <option value="BDE">BDE</option>
+                <option value="IT">IT</option>
+                <option value="Super Admin">Super Admin</option>
+                <option value="BDM Delhi">BDM Delhi</option>
+                <option value="CWE">CWE</option>
+                                <option value="DLAhec Suman">DLAhec Suman</option>
+
+                <option value="BDM JPUHUB">BDM JPUHUB</option>
+                <option value="BDM JPAHEC">BDM JPAHEC</option>
+                <option value="HR Coordinator">HR Coordinator</option>
+                <option value="Office Boy">Office Boy</option>
+                <option value="DM">DM</option>
+                <option value="SME">SME</option>
+                <option value="TSE">TSE</option>
+                <option value="ALLOCATION EXECUTIVE">ALLOCATION EXECUTIVE</option>
+                <option value="E_Comerce Executive">E_Comerce Executive</option>
+                                <option value="MO">MO</option>
+                <option value="Chanchla">Chanchla</option>
+                <option value="SMM">SMM</option>
+                <option value="3D modeller">3D modeller</option>
+                <option value="Director">Director</option>
+                <option value="Education Counsellor">Education Counsellor</option>
+
+                           
+
+
+
+
+              </select>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Designation" class="ams-dash-label">Designation<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <select class="ams-dash-inputbox" id="Designation">
+                <option value="">Select</option>
+                <option value="Web Developer">Web Developer</option>
+                <option value="Android Developer">Android Developer</option>
+                <option value="Business Development Executive">Business Development Executive</option>
+                <option value="Business Development Manager">Business Development Manager</option>
+                <option value="Technical Support Executive">Technical Support Executive</option>
+                <option value="Content Writer Executive">Content Writer Executive</option>
+                <option value="Web Designer">Web Designer</option>
+                <option value="HR / Accountant">HR / Accountant</option>
+                <option value="Subject Matter Expert">Subject Matter Expert</option>
+                <option value="HR Coordinator">HR Coordinator</option>
+                <option value="Allocation">Allocation</option>
+                <option value="DM Track Lead">DM Track Lead</option>
+                <option value="Sales and Marketing Executive">Sales and Marketing Executive</option>
+                <option value="workforce management">workforce management</option>
+                <option value="Allocation Executive">Allocation Executive</option>
+                <option value="E-commerce Executive">E-commerce Executive</option>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Graphic Designer">Graphic Designer</option>
+                <option value="Manager Operations">Manager Operations</option>
+                <option value="Social Media Manager">Social Media Manager</option>
+                <option value="3D Modeller">3D Modeller</option>
+                <option value="Director">Director</option>
+                <option value="Education Counsellor">Education Counsellor</option>
+
+
+
+
+              </select>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Departmen" class="ams-dash-label">Department<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <select class="ams-dash-inputbox" id="Departmen">
+                <option value="">Select</option>
+                <option value="AHIT">AHIT</option>
+                <option value="AHEC">AHEC</option>
+                <option value="UHUB">UHUB</option>
+                <option value="A2G">A2G</option>
+                <option value="MICS">MICS</option>
+                <option value="DMJ">DMJ</option>
+                <option value="WFM">WFM</option>
+                <option value="Bharat Schools">Bharat Schools</option>
+                                <option value="BBSMIT">BBSMIT</option>
+
+
+
+              </select>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Firstname" class="ams-dash-label">First Name<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Firstname" class="ams-dash-inputbox" placeholder="Enter First Name"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Lastname" class="ams-dash-label">Last Name<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Lastname" class="ams-dash-inputbox" placeholder="Enter Last Name"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Father_name" class="ams-dash-label">Father's Name<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Father_name" class="ams-dash-inputbox" placeholder="Enter Father's Name"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Mother_name" class="ams-dash-label">Mother's Name<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Mother_name" class="ams-dash-inputbox" placeholder="Enter Mother's Name"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Login_email" class="ams-dash-label">Email (Log in Username)<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="email" id="Login_email" class="ams-dash-inputbox" placeholder="Enter Username"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Office_email" class="ams-dash-label">Office Email<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="email" id="Office_email" class="ams-dash-inputbox" placeholder="Enter email"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Gender" class="ams-dash-label">Gender<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <select class="ams-dash-inputbox" id="Gender">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+
+                <option value="Female">Female</option>
+              </select>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="DateOfBirth" class="ams-dash-label">Date of Birth<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="DateOfBirth" class="ams-dash-inputbox" placeholder="Enter Date of Birth"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Dateofjoining" class="ams-dash-label">Date of Joining<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Dateofjoining" class="ams-dash-inputbox" placeholder="Enter Joining Date"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Phone" class="ams-dash-label">Phone<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="number" id="Phone" class="ams-dash-inputbox" placeholder="Enter Number"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Emergencycontact" class="ams-dash-label">Emergency Contact Number<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="number" id="Emergencycontact" class="ams-dash-inputbox" placeholder="Enter Number"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Merital_status" class="ams-dash-label">Marital Status<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <select class="ams-dash-inputbox" id="Merital_status">
+                <option value="">Select</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Widowed">Widowed</option>
+                <option value="Seperated">Seperated</option>
+                <option value="Not Specified">Not Specified</option>
+
+
+              </select>
+            </div>
+      
+            <div class="col-md-6 mt-3">
+              <div class="file-upload-container">
+                <span class="ams-dash-label">Photo<span style="color: rgba(1, 168, 229, 1)">*</span></span>
+                <input type="file"  id="Photo" class="file-upload-input" value="" onchange="handleFileChange(event, 'Photo')"/>
+                <label for="Photo" class="file-upload-label ams-dash-label ams-dash-inputbox">
+                  <div class="drag-drop-text">
+                    <i class="bi bi-escape"></i> Drag and drop a file here or click
+                  </div>
+                </label>
+              </div>
+            </div>
+      
+            <div class="col-md-6 mt-3">
+              <label for="Current_address" class="ams-dash-label">Current Address<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Current_address" class="ams-dash-inputbox" placeholder="Enter Current Address"/>
+            </div>
+      
+            <div class="col-md-6 mt-3">
+              <label for="Permanent_address" class="ams-dash-label">Permanent Address<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Permanent_address" class="ams-dash-inputbox" placeholder="Enter Permanent Address"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Qualification" class="ams-dash-label">Qualification<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Qualification" class="ams-dash-inputbox" placeholder="Enter Qualification"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Work_experience" class="ams-dash-label">Work Experience<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Work_experience" class="ams-dash-inputbox" placeholder="Enter Work Experience"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Note" class="ams-dash-label">Note<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Note" class="ams-dash-inputbox" placeholder="Enter Note"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="AAdhar_number" class="ams-dash-label">Aadhaar Number<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="number" id="AAdhar_number" class="ams-dash-inputbox" placeholder="Enter Aadhaar Number"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Pan_number" class="ams-dash-label">PAN Number<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Pan_number" class="ams-dash-inputbox" placeholder="Enter PAN Number"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="PL" class="ams-dash-label">PL<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="number" id="PL" class="ams-dash-inputbox" placeholder="Enter PL"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="AL" class="ams-dash-label">AL<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="number" id="AL" class="ams-dash-inputbox" placeholder="Enter AL"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Bank_title" class="ams-dash-label">Bank Title<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Bank_title" class="ams-dash-inputbox" placeholder="Enter Bank Title"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Acount_number" class="ams-dash-label">Account Number<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="number" id="Acount_number" class="ams-dash-inputbox" placeholder="Enter Account Number"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Bank_name" class="ams-dash-label">Bank Name<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Bank_name" class="ams-dash-inputbox" placeholder="Enter Bank Name"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="IFSC_code" class="ams-dash-label">IFSC Code<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="IFSC_code" class="ams-dash-inputbox" placeholder="Enter IFSC Code"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="Branch_name" class="ams-dash-label">Branch Name<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="Branch_name" class="ams-dash-inputbox" placeholder="Enter Branch Name"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="FacebookURL" class="ams-dash-label">Facebook URL<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="FacebookURL" class="ams-dash-inputbox" placeholder="Enter Facebook URL"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="InstaURL" class="ams-dash-label">Instagram URL<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="InstaURL" class="ams-dash-inputbox" placeholder="Enter Instagram URL"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="TWitterURL" class="ams-dash-label">Twitter URL<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="TWitterURL" class="ams-dash-inputbox" placeholder="Enter Twitter URL"/>
+            </div>
+      
+            <div class="col-md-4 mt-3">
+              <label for="LinkdinUrl" class="ams-dash-label">LinkedIn URL<span style="color: rgba(1, 168, 229, 1)">*</span></label>
+              <input type="text" id="LinkdinUrl" class="ams-dash-inputbox" placeholder="Enter LinkedIn URL"/>
+            </div>
+      
+            <div class="col-md-6 mt-3">
+              <div class="file-upload-container">
+                <span class="ams-dash-label">Resume<span style="color: rgba(1, 168, 229, 1)">*</span></span>
+                <input type="file" id="Resume" class="file-upload-input" onchange="handleFileChange(event, 'resume')" />
+                <label for="Resume" class="file-upload-label ams-dash-label ams-dash-inputbox">
+                  <div class="drag-drop-text">
+                    <i class="bi bi-escape"></i> Drag and drop a file here or click
+                    <span id="file-name-resume" class="file-name"></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+      
+            <div class="col-md-6 mt-3">
+              <div class="file-upload-container">
+                <span class="ams-dash-label">Joining Letter<span style="color: rgba(1, 168, 229, 1)">*</span></span>
+                <input type="file" id="Joiningletter" class="file-upload-input" onchange="handleFileChange(event, 'Joiningletter')" />
+                <label for="Joiningletter" class="file-upload-label ams-dash-label ams-dash-inputbox">
+                  <div class="drag-drop-text">
+                    <i class="bi bi-escape"></i> Drag and drop a file here or click
+                    <span id="file-name-Joiningletter" class="file-name"></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+      
+            <div class="col-md-6 mt-3">
+              <div class="file-upload-container">
+                <span class="ams-dash-label">Other Documents<span style="color: rgba(1, 168, 229, 1)">*</span></span>
+                <input type="file" id="Other_documents" class="file-upload-input" onchange="handleFileChange(event, 'Other_documents')" />
+                <label for="Other_documents" class="file-upload-label ams-dash-label ams-dash-inputbox">
+                  <div class="drag-drop-text">
+                    <i class="bi bi-escape"></i> Drag and drop a file here or click
+                    <span id="file-name-Other_documents" class="file-name"></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+          </div>
+      
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button type="button" id="save-button" class="save-form-btnsvws">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      </div>
+      <h6 class="copyright-text">
+        Copyright © 2024 <span style="color: rgba(1, 168, 229, 1)">A2RMS</span>.
+        All Rights Reserved.
+      </h6>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+
+    <script>
+      const body = document.querySelector("body"),
+        modeToggle = body.querySelector(".mode-toggle");
+      sidebar = body.querySelector("nav");
+      sidebarToggle = body.querySelector(".sidebar-toggle");
+      let getMode = localStorage.getItem("mode");
+      if (getMode && getMode === "dark") {
+        body.classList.toggle("dark");
+      }
+
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+        if (sidebar.classList.contains("close")) {
+          localStorage.setItem("status", "close");
+        } else {
+          localStorage.setItem("status", "open");
+        }
+      });
+    </script>
+    <script>
+      document
+        .querySelector(".file-upload-input")
+        .addEventListener("change", function (e) {
+          const fileName = e.target.files[0].name;
+          document.querySelector(
+            ".drag-drop-text"
+          ).textContent = `Selected file: ${fileName}`;
+        });
+    </script>
+
+    <script>
+     let Resume, Joiningletter, Other_documents, Photo;
+
+function handleFileChange(event, type) {
+  const file = event.target.files[0];
+  if (file) {
+    const formData = new FormData();
+    formData.append("image", file, file.name);
+
+    fetch("http://127.0.0.1:8000/api/v1/upload", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+      },
+      body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (type === "resume") {
+        Resume = data.data;
+        console.log("Resume Response:", Resume);
+      }
+      if (type === "Joiningletter") {
+        Joiningletter = data.data;
+        console.log("Joining Letter Response:", Joiningletter);
+      }
+      if (type === "Other_documents") {
+        Other_documents = data.data;
+        console.log("Other Documents Response:", Other_documents);
+      }
+      if (type === "Photo") {
+        Photo = data.data;
+        console.log("Photo Response:", Photo);
+      }
+
+      // Update the label with the file name
+      document.getElementById(`file-name-${type}`).textContent = file.name;
+    })
+    .catch((error) => console.error("Error:", error));
+  }
+}
+
+
+
+    
+
+
+      function getSelectValue() {
+      // Method 1: Using element.value
+      
+
+      
+
+      // Display the selected value
+      alert("Selected Value: " + selectedValue);
+    }
+
+
+
+
+
+      function handleSave() {
+        const form = document.getElementById('staff-form');
+    
+    const fieldValues = {};
+
+    Array.from(form.elements).forEach(element => {
+      if (element.type !== 'file' && element.type !== 'submit' && element.type !== 'button') {
+        if (element.tagName === 'SELECT') {
+          fieldValues[element.id] = element.options[element.selectedIndex].value;
+        } else {
+          fieldValues[element.id] = element.value;
+        }
+      }
+    });
+    const saveData = {
+      ...fieldValues,
+      Resume,
+      Joiningletter,
+      Other_documents,
+      Photo,
+    };
+
+    // console.log(saveData);
+  
+
+
+    fetch('http://127.0.0.1:8000/api/v1/addstaff', {
+        method: 'POST',
+        headers: {
+           'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify(saveData)
+    })
+     .then(response => response.json())
+     .then(data => {
+     console.log('Success:', data.message);
+     if(data.message == "Staff Added"){
+  //  window.location.href = '/home';
+     }
+     })
+     .catch(error => console.error('Error:', error));
+  }
+
+  document.getElementById('save-button').addEventListener('click', handleSave);
+
+
+
+  
+    </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+uvicorn
+fastapi
+pydentic
+mongoengine
+boto3

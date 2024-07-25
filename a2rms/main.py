@@ -6,6 +6,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 app = FastAPI()
 from fastapi import APIRouter
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from employe.models.employemodel import Employeetablecreate, EmployeTable
 import json
@@ -13,7 +14,13 @@ import io
 import os
 from boto3 import client
 import uuid
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins, replace with specific origins as needed
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 connect('A2rms', host="mongodb+srv://avbigbuddy:nZ4ATPTwJjzYnm20@cluster0.wplpkxz.mongodb.net/A2rms")   
 app.mount("/static", StaticFiles(directory="static"), name="static")

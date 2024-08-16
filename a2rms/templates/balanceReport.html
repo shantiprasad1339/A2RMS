@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-------------------------------- css Tages ------------------------------------>
+    <link rel="stylesheet" href="{{ url_for('static', path='/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/js/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/js/responsive.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/media.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="../static//js/jquery.min.js"></script>
+        <script src="../static//js/jquery-migrate.js"></script>
+
+
+</head>
+
+<body id="full">
+    <!-------------------------------- Sidebar ------------------------------------>
+    <aside>
+        <div class="aside_btn d-lg-flex d-none">
+            <img src="../static/images/icons/ham.svg" alt="Hamburger Menu">
+        </div>
+        <div class="close-full d-lg-none d-flex">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="logo">
+            <img src="../static/images/logo/logo.svg">
+            <span>/</span>
+            <img src="../static/images/logo/custom.png" alt="">
+        </div>
+        <ul>
+            <li>
+                <a href="./dashboard.html" class="active">
+                    <img src="../static/images/icons/icona_1.svg" alt="">
+                    <span>Dashboard</span>
+
+                </a>
+
+            </li>
+            <li>
+                <a class="sub-btn">
+                    <img src="../static/images/icons/icona_2.svg" alt="">
+                    <span>Attendance</span>
+                    <i class="fa-solid fa-angle-down dropdown1"></i>
+
+
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="./markAttendance.html">Mark Attendance</a></li>
+                    <li><a href="./attendanceReport.html">Attendance Report</a></li> 
+                </ul>
+            </li>
+            <li>
+                <a class="sub-btn">
+                    <img src="../static/images/icons/icona_3.svg" alt="">
+                    <span>Leaves</span>
+                    <i class="fa-solid fa-angle-down dropdown1"></i>
+
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="./leaveApplications.html">Apply Leave</a></li>
+                    <li><a href="./Leavebalance.html">Leave Balance </a></li>
+                    <li><a href="./leaveReport.html">Leave Reports</a></li> 
+                </ul>
+            </li>
+            <li>
+                <a class="sub-btn" href="./holidays.html">
+                    <img src="../static/images/icons/icona_4.svg" alt="">
+                    <span>Holidays Calendar</span> 
+
+                </a>
+                 
+            </li>
+            <li>
+                <a class="sub-btn" href="./Noticeboard.html">
+                    <img src="../static/images/icons/icona_2.svg" alt="">
+                    <span>Noticeboard</span> 
+
+                </a>
+                
+            </li>
+            <li>
+                <a class="sub-btn" href="./awards.html">
+                    <img src="../static/images/icons/icona_5.svg" alt="">
+                    <span>Awards</span> 
+                </a>
+               
+            </li>
+            <li>
+                <a class="sub-btn">
+                    <img src="../static/images/icons/icona_6.svg" alt="">
+                    <span>Account Settings</span>
+                    <i class="fa-solid fa-angle-down dropdown1"></i>
+                </a>
+                <ul class="sub-menu">
+                      <li><a href="./profile.html">Profile </a></li>
+                    <li><a href="./changepassword.html">Change Password</a></li> 
+                </ul>
+            </li>
+            <li>
+                <a class="sub-btn">
+                    <img src="../static/images/icons/icona_7.svg" alt="">
+                    <span>Logout</span>
+
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-------------------------------- main_area ------------------------------------>
+    <div class="main_area">
+        <header>
+            <div class="row">
+                <div class="col-md-6 col-8 d-flex align-content-center">
+                    <div class="close-full close11">
+                        <img src="../static/images/icons/ham.svg" alt="Hamburger Menu">
+                    </div>
+                    <div class="aside_btn btn_mobile d-lg-none d-flex">
+                        <img src="../static/images/icons/ham.svg" alt="Hamburger Menu">
+                    </div>
+                    <div class="header_search">
+                        <input type="search" placeholder="Search By Staff ID, Name, Role">
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-4">
+                    <div class="header_box_2">
+                        <ul>
+                            <li>
+                                <img src="../static/images/gif/notification.gif" alt="">
+                            </li>
+                            <li onclick="var el = document.getElementById('full'); el.requestFullscreen();">
+                                <i class="fa-duotone fa-solid fa-expand"></i>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="../static/images/vactors/profile.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="hero-dash">
+         <section class="m_attendance_area">
+          <div class="row">
+            <div class="col-sm-6">
+                  <h3 class="headding_1">Leave <span> Balance</span></h3>
+            </div>
+            
+          </div>
+          <div class="table_box">
+            <div class="row">
+                <div class="col-xxl-12 pb-2">
+                    <h5 class="appl_heading" style="color: #fff;">Financial Year : 2024-2025 </h5>
+                </div>
+                <div class="col-xl-12">
+                    <table id="example" class="table table-striped dt-responsive nowrap"
+                    style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Leave Type</th>
+                            <th>Total Granted Leaves</th>
+                            <th>Leaves Applied </th>
+                            <th>Leave Balance</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody class="bg-tr">
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>     <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                PL
+                            </td>
+                            <td>
+                                24.00
+                            </td>
+                            <td>
+                                1.00
+                            </td>
+                            <td>23</td>
+                            
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+         </section>
+       
+          <footer class="pt-4">
+            <h5>Copyright ©2024 <span>A2Rms</span>. All Rights Reserved</h5>
+          </footer>
+        </div>
+
+    </div>
+
+
+<!-------------------------------- js Tages ------------------------------------>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="../static/bootstrap/bootstrap.min.js"></script>
+<script src="../static/js/main.js"></script>
+   <!--*****************  dataTables-js ******************-->
+
+
+   <script type="text/javascript" src="../static/js/jquery.dataTables.min.js"></script>
+   <script type="text/javascript" src="../static/js/dataTables.bootstrap5.min.js"></script>
+   <script type="text/javascript" src="../static/js/dataTables.responsive.min.js"></script>
+   <script type="text/javascript" src="../static/js/responsive.bootstrap5.min.js"></script>
+   <script>
+       $(document).ready(function () {
+           $('#example').DataTable();
+       });
+   </script>
+</body>
+
+</html>

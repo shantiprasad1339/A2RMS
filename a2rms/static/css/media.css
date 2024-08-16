@@ -1,0 +1,198 @@
+/* responcive area style start */
+
+
+@media (min-width: 1400px) {
+
+}
+
+@media screen and (max-width: 1450px) {
+
+}
+
+@media screen and (max-width: 1400px) {
+    .color_notifi{
+        overflow: scroll ;
+    }
+}
+
+
+@media screen and (max-width: 1350px) {
+    .color_notifi{
+        overflow: scroll ;
+    }
+}
+
+
+@media screen and (max-width: 1300px) {
+
+}
+
+
+@media screen and (max-width: 1250px) {
+  
+}
+
+
+@media screen and (max-width: 1200px) {
+
+}
+
+
+@media screen and (max-width: 1150px) {
+
+}
+
+@media screen and (max-width: 1098px) {
+   
+}
+
+@media screen and (max-width: 992px) {
+    aside{
+        transform: translateX(-657px);
+    }
+    .main_area{
+        padding-left: 20px;
+    }
+    .close-full{
+        display: flex ;
+    }
+    aside.inactive{
+        transform: translateX(0px);
+        z-index: 8888;
+        background-color: white;
+
+    }
+    .close11{
+        display: none;
+    }
+    .close-full.active{
+        display: none;
+        right: -9px !important;
+    }
+    .holidays_tbody>tr>td>.box.event { 
+        overflow: scroll;
+    }
+    .holiday_section{
+        overflow-x: scroll !important;
+    }
+    .table_area{
+        overflow: scroll;
+    }
+    .table_header{
+        min-width: 800px;
+    }
+    .tates_box{
+        min-width: 800px;
+
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .header_box_2>ul>li>i{
+        display: none;
+    }
+    .header_box_2>ul{
+        gap: 10px;
+    }
+    .header_search>input{
+        display: none;}
+        .header_search>button{
+            background-color: #01A8E6;
+        }
+        .header_search>button>i{
+             color: #fff;
+        }
+        .btn_mobile { 
+            padding: 23px 17px;
+        }
+       .header_search{
+        display: none;
+       }
+       .leave_box { 
+        margin-top: 22px;
+    }
+    .holiday_box_inner>.box_1{
+        display: grid;
+        align-items: center;
+    }
+    .holiday_box_inner{
+        justify-content: center;
+    }
+    .holiday_box_inner>.box_1>h3{
+        text-align: center;
+    }
+    .holidays_tbody>tr>td{
+        min-width: 200px !important;
+    }
+    .upcoming_holidays{
+        width: 100%;
+        min-width: 1399px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    aside{
+        max-width: 100%;
+        left: 0;
+        top: 0;
+    }
+    .hero-dash {
+        padding: 20px 0;
+    }
+    .holiday_box_inner>.box_2{
+        display: none;
+    }
+    .hero-main{
+        padding: 20px 10px;
+    }
+    .profile_details>ul>li{
+        width: 100%;
+    }
+    .leave_box>ul>li a{
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .leave_box>ul>li span.date{
+        width: 100%;
+        margin-bottom: 10px;
+
+    }
+    .event_box_inner{
+        margin-top: 50px;
+    }
+    .leave_box>ul>li{
+        padding: 22px 20px;
+    }
+    div.dataTables_wrapper div.dataTables_filter{
+        margin-bottom: 20px;
+    }
+    table.dataTable>tbody>tr>td:first-child{
+        padding-left: 5px !important;
+    }
+    table.dataTable>tbody>tr.child ul.dtr-details{
+        width: 100%;
+    }
+}@media screen and (max-width: 450px) {
+    .m_buttons{
+        display: block;
+    
+    }
+    .m_buttons>a{
+        margin: 10px 0;
+    }
+}
+@media screen and (max-width: 375px) {
+    header{
+        padding: 10px 0;
+        border-radius: 10px;
+    }
+    .main_area{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}@media screen and (max-width: 325px) {
+
+}
+ 

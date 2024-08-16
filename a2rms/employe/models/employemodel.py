@@ -51,7 +51,7 @@ class Employeetablecreate(BaseModel):
     StaffId: str
     Role: str
     Designation: str
-    Departmen: str
+    Departmen: str 
     Firstname: str
     Lastname: str
     Father_name: str

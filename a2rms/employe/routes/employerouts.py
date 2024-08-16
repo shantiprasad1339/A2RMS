@@ -1,11 +1,12 @@
 from fastapi import APIRouter
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse 
 from employe.models.employemodel import Employeetablecreate, EmployeTable
 import json
 import io
 import os
 from boto3 import client
 import uuid
+
 router = APIRouter()
 from fastapi import FastAPI, File, UploadFile
 
@@ -40,23 +41,4 @@ def upload_image_to_space(file_content: bytes, filename: str):
 async def uploadimage( image: UploadFile = File(...), ):
     file_content = await image.read()
 
-    # Call the upload function with the random filename and the original file extension
-    imagepath = upload_image_to_space(file_content, image.filename)
-    return {
-        "message":"file added",
-        "data":imagepath,
-        "status":True
-    }
-
-@router.post("/api/v1/addstaff")
-async def addStaff(body: Employeetablecreate):
-    data = EmployeTable(**body.dict())
-    data.save()
-    tojson = data.to_json()
-    fromjson = json.loads(tojson)
-    return {
-        "message":"Staff Added",
-        "data": fromjson,
-        "status":True
-    }
-    
+    # Call the upload functi 

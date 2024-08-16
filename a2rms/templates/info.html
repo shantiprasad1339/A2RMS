@@ -1005,8 +1005,9 @@
           .then((response) => response.json())
           .then((data) => {
             console.log("Success:", data.message);
-            if (data.message == "Staff Added") {
-              //  window.location.href = '/home';
+            if (data.message == "Staff added") {
+              alert("Staff Added")
+               window.location.href = '/home-2';
             }
           })
           .catch((error) => console.error("Error:", error));

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Form,  FastAPI, File, UploadFile
+from fastapi import FastAPI, Form,  FastAPI, File, UploadFile, HTTPException
 from mongoengine import connect
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -9,7 +9,9 @@ from fastapi import APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from employe.models.employemodel import Employeetablecreate, EmployeTable
+from ShiftManegment.model.shiftmodel import Attendancecreate,Notecreate,Shiftcreate,AttendanceTable,NoteTable,ShiftTable
 import json
+from datetime import datetime, timedelta
 import io
 import os
 from boto3 import client
@@ -39,6 +41,47 @@ async def get_login_form(request: Request):
 @app.post("/home", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/attendanceReport", response_class=HTMLResponse)
+async def attendanceReport(request: Request):
+    return templates.TemplateResponse("attendanceReport.html", {"request": request})
+
+@app.get("/leaveApplications", response_class=HTMLResponse)
+async def leaveApplications(request: Request):
+    return templates.TemplateResponse("leaveApplications.html", {"request": request})
+@app.get("/balanceReport", response_class=HTMLResponse)
+async def balanceReport(request: Request):
+    return templates.TemplateResponse("balanceReport.html", {"request": request})
+@app.get("/changepassword", response_class=HTMLResponse)
+async def changepassword(request: Request):
+    return templates.TemplateResponse("changepassword.html", {"request": request})
+@app.get("/dashboard", response_class=HTMLResponse)
+async def dashboard(request: Request):
+    return templates.TemplateResponse("dashboard.html", {"request": request})
+@app.get("/holidays", response_class=HTMLResponse)
+async def holidays(request: Request):
+    return templates.TemplateResponse("holidays.html", {"request": request})
+@app.get("/Leavebalance", response_class=HTMLResponse)
+async def Leavebalance(request: Request):
+    return templates.TemplateResponse("Leavebalance.html", {"request": request})
+@app.get("/leaveReport", response_class=HTMLResponse)
+async def leaveReport(request: Request):
+    return templates.TemplateResponse("leaveReport.html", {"request": request})
+@app.get("/markAttendance", response_class=HTMLResponse)
+async def markAttendance(request: Request):
+    return templates.TemplateResponse("markAttendance.html", {"request": request})
+@app.get("/Noticeboard", response_class=HTMLResponse)
+async def Noticeboard(request: Request):
+    return templates.TemplateResponse("Noticeboard.html", {"request": request})
+
+
+
+
+
+@app.get("/awards", response_class=HTMLResponse)
+async def awards(request: Request):
+    return templates.TemplateResponse("awards.html", {"request": request})
+
 
 
 @app.get("/perticulerstaff", response_class=HTMLResponse)
@@ -96,6 +139,28 @@ async def addStaff(body: Employeetablecreate):
     return {
         "message":"Staff Added",
         "data": fromjson,
-        "status":True
+        "status":True 
     }
     
+@app.post("/shifts/")
+async def create_shift(body:Shiftcreate):
+    data = ShiftTable(**body.dict())
+    data.save()
+    tojson = data.to_json()
+    fromjson = json.loads(tojson)
+    return {
+        "message":"Shift Added",
+        "data": fromjson,
+        "status":True 
+    }
+
+@app.get("/shifts/get")
+async def get_shifts():
+    data = ShiftTable.objects.all()
+    tojson = data.to_json()
+    fromjson = json.loads(tojson)
+    return {
+        "message":"Shift get",
+        "data": fromjson,
+        "status":True 
+    }

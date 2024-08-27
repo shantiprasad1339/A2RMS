@@ -41,6 +41,8 @@ class EmployeTable(Document):
     Resume = StringField(required = True)
     Joiningletter = StringField(required = True)
     Other_documents = StringField(required = True)
+    Intime = StringField(required = True)
+    Outtime = StringField(required = True)
 
     
     
@@ -86,5 +88,7 @@ class Employeetablecreate(BaseModel):
     Resume: str
     Joiningletter: str
     Other_documents: str
+    Intime: str
+    Outtime:str
 
     

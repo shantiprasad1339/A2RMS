@@ -9,15 +9,16 @@ from fastapi import APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from employe.models.employemodel import Employeetablecreate, EmployeTable
-from ShiftManegment.model.shiftmodel import Attendancecreate,Notecreate,Shiftcreate,AttendanceTable,NoteTable,ShiftTable
+from shiftmanegment.model.shiftmodel import ShiftTablecreate, ShiftTable
 import json
 from datetime import datetime, timedelta
+from starlette.middleware.cors import CORSMiddleware
 import io
 import os
 from boto3 import client
 import uuid
 app.add_middleware(
-    CORSMiddleware,
+    CORSMiddleware,  # Add the middleware class here
     allow_origins=["*"],  # Allows all origins, replace with specific origins as needed
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Allows all methods
@@ -142,25 +143,109 @@ async def addStaff(body: Employeetablecreate):
         "status":True 
     }
     
-@app.post("/shifts/")
-async def create_shift(body:Shiftcreate):
-    data = ShiftTable(**body.dict())
-    data.save()
-    tojson = data.to_json()
-    fromjson = json.loads(tojson)
-    return {
-        "message":"Shift Added",
-        "data": fromjson,
-        "status":True 
-    }
+@app.post("/abcds")
+async def abcd(body: ShiftTablecreate):
+    userid = body.userid
+    user_details = fetch_user_details(userid)
 
-@app.get("/shifts/get")
-async def get_shifts():
-    data = ShiftTable.objects.all()
-    tojson = data.to_json()
-    fromjson = json.loads(tojson)
+    if user_details:
+        current_time = datetime.now()
+        shift_in_time = user_details.get('intimeshift')
+        shift_out_time = user_details.get('outtimeshift')
+
+        if not shift_in_time or not shift_out_time:
+            return {"message": "User shift details are incomplete.", "status": False}
+
+        if body.note.lower() == "intime":
+            # Check if user is logging in
+            if current_time < shift_in_time:
+                note = f"User logged in early at {current_time}."
+            elif current_time > shift_in_time + timedelta(minutes=30):
+                note = f"User logged in late at {current_time}. Half day."
+            elif current_time > shift_in_time:
+                note = f"User logged in late at {current_time}. Late by {(current_time - shift_in_time).seconds // 60} minutes."
+            else:
+                note = f"User logged in on time at {current_time}."
+
+            data = ShiftTable(userid=userid, note=note, intime=current_time)
+        elif body.note.lower() == "outtime":
+            # Check if user is logging out
+            if current_time < shift_out_time:
+                time_difference = shift_out_time - current_time
+                
+                if time_difference <= timedelta(hours=1):
+                    note = f"User logged out early at {current_time}."
+                else:
+                    note = f"User logged out early at {current_time}. Half day due to early logout."
+            else:
+                note = f"User logged out on time at {current_time}."
+
+            data = ShiftTable(userid=userid, note=note, outtime=current_time)
+            # Check if user is logging out
+            if current_time < shift_out_time:
+                time_difference = shift_out_time - current_time
+                
+                if time_difference <= timedelta(hours=1):
+                    note = f"User logged out early at {current_time}."
+                else:
+                    note = f"User logged out early at {current_time}. Half day due to early logout."
+            else:
+                note = f"User logged out on time at {current_time}."
+
+            data = ShiftTable(userid=userid, note=note, outtime=current_time)
+
+        elif body.note.lower() == "startbreak":
+            # User starts a break
+            if not data.startbreak or len(data.startbreak) < 2:
+                # If no breaks have been taken or only one break has been taken
+                data.startbreak.append(current_time)
+                note = f"User started break at {current_time}."
+            else:
+                return {"message": "Break limit reached. Only two breaks allowed.", "status": False}
+
+        elif body.note.lower() == "endbreak":
+            # User ends a break
+            if data.startbreak and (len(data.endbreak) < len(data.startbreak)):
+                # Ensure a break has been started and there's a start without an end
+                last_break_start = data.startbreak[-1]
+                break_duration = current_time - last_break_start
+
+                if break_duration > timedelta(minutes=20):
+                    note = f"User exceeded break time by {break_duration.seconds // 60} minutes. Half day."
+                else:
+                    note = f"User ended break at {current_time} after {break_duration.seconds // 60} minutes."
+
+                data.endbreak.append(current_time)
+            else:
+                return {"message": "No break started to end or breaks already ended.", "status": False}
+
+            # Check total break time
+            total_break_time = sum([(end - start).seconds for start, end in zip(data.startbreak, data.endbreak)])
+            if total_break_time > 20 * 60:
+                note += " Total break time exceeded 20 minutes. Half day."
+
+        else:
+            return {"message": "Invalid note provided. Use 'intime', 'outtime', 'startbreak', or 'endbreak'.", "status": False}
+
+        # Save data to MongoDB
+        data.note = note
+        data.save()
+        tojson = data.to_json()
+        fromjson = json.loads(tojson)
+
+        return {
+            "message": "Shift data processed successfully",
+            "data": fromjson,
+            "status": True
+        }
+    else:
+        return {"message": "User not found", "status": False}
+
+def fetch_user_details(userid):
+    # Mock function to simulate fetching user details from MongoDB
+    # Replace this with your actual MongoDB query logic
     return {
-        "message":"Shift get",
-        "data": fromjson,
-        "status":True 
+        "userid": userid,
+        "intimeshift": datetime(2024, 8, 23, 10, 0),  # Example shift start time (10:00 AM)
+        "outtimeshift": datetime(2024, 8, 23, 18, 0)  # Example shift end time (6:00 PM)
     }

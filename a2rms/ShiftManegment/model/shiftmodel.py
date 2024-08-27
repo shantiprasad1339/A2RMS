@@ -1,43 +1,13 @@
-from mongoengine import Document, StringField, IntField, BooleanField
+from mongoengine import Document, StringField, IntField, BooleanField,DateTimeField,ListField
 from pydantic import BaseModel
 
 class ShiftTable(Document):
-    name=StringField(required = True)
-    start_time=StringField(required = True)
-    end_time=StringField(required = True)
-    # break_start=StringField(required = True)
-    # break_end=StringField(required = True)
-
-
-class NoteTable(Document):
-    user_id=StringField(required = True)
-    shift_id=StringField(required = True)
-    note=StringField(required = True)
-
-
-
-class AttendanceTable(Document):
-    user_id=StringField(required = True)
-    shift_id=StringField(required = True)
-    note=StringField(required = True)
-
-
-
-
-
-class Shiftcreate(BaseModel):
-    name: str
-    start_time: str
-    end_time: str
-    # break_start: str
-    # break_end: str
-
-class Notecreate(BaseModel):
-    user_id: str
-    shift_id: str
+    userid = StringField(required=True)
+    note = StringField(required=True)
+    intime = DateTimeField()
+    outtime = DateTimeField()
+    startbreak = ListField(DateTimeField())  # List to handle multiple breaks
+    endbreak = ListField(DateTimeField())  # List to handle multiple breaks
+class ShiftTablecreate(BaseModel):
+    userid: str
     note: str
-
-class Attendancecreate(BaseModel):
-    user_id: str
-    shift_id: str
-    check_in_time: str
